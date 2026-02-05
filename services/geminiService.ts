@@ -73,3 +73,19 @@ export async function generatePoem() {
     return "In every breath and every beat,\nYou make my world feel so complete.\nA love as pure as morning dew,\nMy heart will always belong to you.";
   }
 }
+
+export async function generateSecret() {
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-3-flash-preview",
+      contents: "Generate a sweet 'secret' about why I love my partner. Something cute like 'I secretly love the way you wrinkle your nose when you laugh'. One sentence only.",
+      config: {
+        temperature: 1.1,
+      },
+    });
+    return response.text.trim();
+  } catch (e) {
+    return "I secretly think you have the most beautiful soul I've ever encountered.";
+  }
+}
